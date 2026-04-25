@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prevention of Deforestation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Lato', Arial, sans-serif;
+            background-color: #eaf7ea;
+            color: #1a1a1a;
+        }
+
+        /* NAV */
+        nav {
+            background-color: #1b5e20;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 4px;
+            padding: 10px 20px;
+        }
+
+        nav a {
+            color: #c8e6c9;
+            text-decoration: none;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 14px;
+            transition: background 0.2s;
+        }
+
+        nav a:hover {
+            background-color: #2e7d32;
+            color: white;
+        }
+
+        /* HEADER */
+        header {
+            background-color: #2e7d32;
+            color: white;
+            text-align: center;
+            padding: 40px 20px 30px;
+        }
+
+        header h1 {
+            font-family: 'Merriweather', serif;
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-top: 4px;
+        }
+
+        /* SECTIONS */
+        main {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        section {
+            background: white;
+            border-radius: 12px;
+            padding: 24px 28px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+
+        h2 {
+            font-family: 'Merriweather', serif;
+            color: #2e7d32;
+            font-size: 1.2rem;
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #eaf7ea;
+        }
+
+        /* BILINGUAL PAIRS */
+        .bilingual-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .bilingual-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid #f0f0f0;
+            line-height: 1.6;
+        }
+
+        .bilingual-list li:last-child {
+            border-bottom: none;
+        }
+
+        .lang-en {
+            display: block;
+            color: #1a1a1a;
+        }
+
+        .lang-mr {
+            display: block;
+            color: #555;
+            font-size: 0.93em;
+            margin-top: 2px;
+        }
+
+        /* INTRO TEXT */
+        .bilingual-para {
+            line-height: 1.8;
+            margin-bottom: 12px;
+        }
+
+        .bilingual-para + .bilingual-para {
+            color: #555;
+            font-size: 0.95em;
+        }
+
+        /* TREE INFO */
+        img {
+            width: 100%;
+            max-width: 400px;
+            border-radius: 10px;
+            display: block;
+            margin: 0 auto 20px;
+        }
+
+        .tree-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .tree-card {
+            background: #f6fdf6;
+            border-radius: 8px;
+            padding: 12px 16px;
+            border: 1px solid #c8e6c9;
+        }
+
+        .tree-card dt {
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #2e7d32;
+            margin-bottom: 4px;
+        }
+
+        .tree-card dd {
+            font-size: 14px;
+            color: #333;
+        }
+
+        @media (max-width: 500px) {
+            .tree-grid { grid-template-columns: 1fr; }
+            header h1 { font-size: 1.4rem; }
+        }
+
+        /* FOOTER */
+        footer {
+            text-align: center;
+            padding: 24px 16px;
+            background: #1b5e20;
+            color: #a5d6a7;
+            font-size: 13px;
+        }
+
+        footer strong {
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+<nav>
+    <a href="#home">Home</a>
+    <a href="#trees">About Trees</a>
+    <a href="#importance">Importance</a>
+    <a href="#prevention">Prevention</a>
+    <a href="#facts">Facts</a>
+</nav>
+
+<header>
+    <h1>Prevention of Deforestation</h1>
+    <p>Save Trees, Save Future 🌳</p>
+    <p><span lang="mr">झाडे वाचवा, भविष्य वाचवा 🌳</span></p>
+</header>
+
+<main>
+
+    <section id="home">
+        <h2>Home / <span lang="mr">मुख्य माहिती</span></h2>
+        <p class="bilingual-para">
+            Deforestation is the cutting of trees on a large scale for human activities.
+            It causes environmental problems like climate change and loss of biodiversity.
+            Preventing deforestation is important to protect our planet.
+        </p>
+        <p class="bilingual-para">
+            <span lang="mr">
+                वनतोड म्हणजे मानवी क्रियाकलापांसाठी मोठ्या प्रमाणावर झाडांची तोड करणे होय.
+                यामुळे हवामान बदल आणि जैवविविधतेचा नाश यांसारख्या समस्या निर्माण होतात.
+                आपल्या पृथ्वीचे संरक्षण करण्यासाठी वनतोड रोखणे अत्यंत महत्त्वाचे आहे.
+            </span>
+        </p>
+    </section>
+
+    <section id="trees">
+        <h2>About Trees / <span lang="mr">झाडांची माहिती</span></h2>
+
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Neem_tree.jpg/640px-Neem_tree.jpg" alt="Neem Tree (Azadirachta indica)">
+
+        <dl class="tree-grid">
+            <div class="tree-card">
+                <dt>Tree Name</dt>
+                <dd>Neem Tree<br><span lang="mr">कडुलिंब</span></dd>
+            </div>
+            <div class="tree-card">
+                <dt>Species</dt>
+                <dd><em>Azadirachta indica</em></dd>
+            </div>
+            <div class="tree-card">
+                <dt>Uses</dt>
+                <dd>Medicine, air purification, shade<br><span lang="mr"><small>औषध, हवा शुद्ध करणे, सावली</small></span></dd>
+            </div>
+            <div class="tree-card">
+                <dt>Benefits</dt>
+                <dd>Improves air quality, supports wildlife, provides oxygen<br><span lang="mr"><small>हवा शुद्ध करते, प्राण्यांना आधार देते, ऑक्सिजन देते</small></span></dd>
+            </div>
+        </dl>
+    </section>
+
+    <section id="importance">
+        <h2>Importance of Forests / <span lang="mr">जंगलांचे महत्त्व</span></h2>
+        <ul class="bilingual-list">
+            <li>
+                <span class="lang-en">Maintain ecological balance</span>
+                <span class="lang-mr" lang="mr">पर्यावरणाचा समतोल राखतात</span>
+            </li>
+            <li>
+                <span class="lang-en">Provide oxygen and clean air</span>
+                <span class="lang-mr" lang="mr">ऑक्सिजन आणि स्वच्छ हवा देतात</span>
+            </li>
+            <li>
+                <span class="lang-en">Support wildlife and biodiversity</span>
+                <span class="lang-mr" lang="mr">वन्यजीव आणि जैवविविधतेला आधार देतात</span>
+            </li>
+            <li>
+                <span class="lang-en">Control climate and rainfall</span>
+                <span class="lang-mr" lang="mr">हवामान आणि पावसाचे नियंत्रण करतात</span>
+            </li>
+        </ul>
+    </section>
+
+    <section id="prevention">
+        <h2>Ways to Prevent Deforestation / <span lang="mr">वनतोड रोखण्याचे उपाय</span></h2>
+        <ul class="bilingual-list">
+            <li>
+                <span class="lang-en">Plant more trees (afforestation)</span>
+                <span class="lang-mr" lang="mr">जास्तीत जास्त झाडे लावा</span>
+            </li>
+            <li>
+                <span class="lang-en">Reduce use of paper and wood</span>
+                <span class="lang-mr" lang="mr">कागद आणि लाकडाचा वापर कमी करा</span>
+            </li>
+            <li>
+                <span class="lang-en">Spread awareness about forest conservation</span>
+                <span class="lang-mr" lang="mr">वनसंवर्धनाबद्दल जागरूकता वाढवा</span>
+            </li>
+            <li>
+                <span class="lang-en">Use sustainable resources</span>
+                <span class="lang-mr" lang="mr">सतत टिकणारे संसाधने वापरा</span>
+            </li>
+            <li>
+                <span class="lang-en">Support laws against illegal logging</span>
+                <span class="lang-mr" lang="mr">बेकायदेशीर झाडतोडीविरुद्ध कायद्यांना समर्थन द्या</span>
+            </li>
+        </ul>
+    </section>
+
+    <section id="facts">
+        <h2>Extra Information / <span lang="mr">अतिरिक्त माहिती</span></h2>
+        <ul class="bilingual-list">
+            <li>
+                <span class="lang-en">Forests cover about 31% of Earth's land area</span>
+                <span class="lang-mr" lang="mr">जगातील सुमारे 31% जमीन जंगलांनी व्यापलेली आहे</span>
+            </li>
+            <li>
+                <span class="lang-en">Deforestation increases global warming</span>
+                <span class="lang-mr" lang="mr">वनतोडीमुळे जागतिक तापमान वाढते</span>
+            </li>
+            <li>
+                <span class="lang-en">Trees help in water cycle and soil protection</span>
+                <span class="lang-mr" lang="mr">झाडे पाण्याचा चक्र आणि मातीचे संरक्षण करतात</span>
+            </li>
+        </ul>
+    </section>
+
+</main>
+
+<footer>
+    <p><strong>Prevention of Deforestation</strong></p>
+    <p style="margin-top: 6px;">Created as an educational resource &nbsp;·&nbsp; <span lang="mr">शैक्षणिक उद्देशासाठी तयार केले</span></p>
+</footer>
+
+</body>
+</html>
