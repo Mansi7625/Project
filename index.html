@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prevention of Deforestation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --green-deep: #1a4a2e;
+            --green-mid: #2e7d32;
+            --green-card: #1f5c38;
+            --green-light: #eaf7ea;
+            --green-accent: #4caf50;
+            --text-light: #e8f5e9;
+            --text-muted: #a5d6a7;
+            --stat-bg: #174030;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--green-light);
+            color: #1a1a1a;
+        }
+
+        /* NAV */
+        nav {
+            background: var(--green-deep);
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 4px;
+            padding: 10px 20px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        nav a {
+            color: var(--text-muted);
+            text-decoration: none;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 500;
+            transition: background 0.2s, color 0.2s;
+        }
+        nav a:hover { background: var(--green-mid); color: white; }
+
+        /* HEADER */
+        header {
+            background: linear-gradient(160deg, #1a4a2e 0%, #2e7d32 100%);
+            color: white;
+            text-align: center;
+            padding: 50px 20px 40px;
+            position: relative;
+            overflow: hidden;
+        }
+        header::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: radial-gradient(circle, rgba(255,255,255,0.04) 1px, transparent 1px);
+            background-size: 28px 28px;
+        }
+        header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.6rem;
+            margin-bottom: 12px;
+            position: relative;
+        }
+        header p {
+            font-size: 1rem;
+            opacity: 0.85;
+            margin-top: 5px;
+            position: relative;
+        }
+
+        /* MAIN */
+        main { max-width: 900px; margin: 0 auto; padding: 24px 16px 40px; }
+
+        /* HERITAGE CARD */
+        .heritage-card {
+            background: linear-gradient(135deg, var(--green-mid) 0%, var(--green-deep) 100%);
+            border-radius: 20px;
+            padding: 28px 28px 24px;
+            margin-bottom: 28px;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        .heritage-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: radial-gradient(circle, rgba(255,255,255,0.05) 1px, transparent 1px);
+            background-size: 22px 22px;
+            pointer-events: none;
+        }
+        .heritage-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255,255,255,0.12);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 30px;
+            padding: 5px 14px;
+            font-size: 12px;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 18px;
+            color: var(--text-muted);
+        }
+        .heritage-card h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: white;
+            border: none;
+            padding: 0;
+            margin-bottom: 6px;
+            line-height: 1.2;
+        }
+        .heritage-card .scientific {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            margin-bottom: 4px;
+        }
+        .heritage-card .local-name {
+            font-size: 0.95rem;
+            color: rgba(255,255,255,0.6);
+            margin-bottom: 22px;
+        }
+        .stat-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+        }
+        .stat-box {
+            background: var(--stat-bg);
+            border-radius: 14px;
+            padding: 18px 12px;
+            text-align: center;
+        }
+        .stat-box .stat-num {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--text-muted);
+            line-height: 1;
+            margin-bottom: 6px;
+        }
+        .stat-box .stat-label {
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.5);
+            line-height: 1.4;
+        }
+
+        /* CONTENT SECTIONS */
+        section.content {
+            background: white;
+            border-radius: 14px;
+            padding: 24px 26px;
+            margin-bottom: 28px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+        }
+        section.content h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.25rem;
+            color: var(--green-mid);
+            margin-bottom: 16px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--green-light);
+        }
+
+        /* BILINGUAL LIST */
+        .bilingual-list { list-style: none; padding: 0; }
+        .bilingual-list li {
+            padding: 11px 0;
+            border-bottom: 1px solid #f0f0f0;
+            line-height: 1.6;
+        }
+        .bilingual-list li:last-child { border-bottom: none; }
+        .lang-en { display: block; color: #1a1a1a; font-weight: 500; }
+        .lang-mr { display: block; color: #777; font-size: 0.9em; margin-top: 2px; }
+
+        /* FACT GRID */
+        .fact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 14px;
+        }
+        .fact-tile {
+            background: var(--green-light);
+            border-radius: 12px;
+            padding: 18px 16px;
+            border-left: 4px solid var(--green-mid);
+        }
+        .fact-tile .fact-num {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: var(--green-mid);
+            line-height: 1;
+            margin-bottom: 6px;
+        }
+        .fact-tile .fact-label { font-size: 13px; color: #444; line-height: 1.4; }
+        .fact-tile .fact-mr { font-size: 12px; color: #888; margin-top: 3px; }
+
+        /* TREE INFO GRID */
+        .tree-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-top: 16px;
+        }
+        .tree-card {
+            background: var(--green-light);
+            border-radius: 10px;
+            padding: 13px 16px;
+            border: 1px solid #c8e6c9;
+        }
+        .tree-card dt { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--green-mid); margin-bottom: 4px; }
+        .tree-card dd { font-size: 14px; color: #333; }
+
+        img.tree-img {
+            width: 100%;
+            max-width: 400px;
+            border-radius: 12px;
+            display: block;
+            margin: 0 auto 20px;
+        }
+
+        /* CAUSES GRID */
+        .causes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 12px;
+        }
+        .cause-card {
+            background: #fff8f0;
+            border-radius: 12px;
+            padding: 16px;
+            border-left: 4px solid #ff8f00;
+            text-align: center;
+        }
+        .cause-card .cause-icon { font-size: 24px; margin-bottom: 8px; }
+        .cause-card .cause-en { font-size: 13px; font-weight: 500; color: #333; }
+        .cause-card .cause-mr { font-size: 12px; color: #888; margin-top: 3px; }
+
+        /* FOOTER */
+        footer {
+            background: var(--green-deep);
+            color: var(--text-muted);
+            text-align: center;
+            padding: 26px 16px;
+            font-size: 13px;
+        }
+        footer strong { color: white; }
+
+        @media (max-width: 500px) {
+            header h1 { font-size: 1.8rem; }
+            .heritage-card h2 { font-size: 1.6rem; }
+            .stat-row { grid-template-columns: repeat(3, 1fr); }
+            .stat-box .stat-num { font-size: 1.4rem; }
+            .tree-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <a href="#intro">Home</a>
+    <a href="#trees">Trees</a>
+    <a href="#causes">Causes</a>
+    <a href="#effects">Effects</a>
+    <a href="#action">Action</a>
+    <a href="#facts">Facts</a>
+</nav>
+
+<header>
+    <h1>Prevention of Deforestation</h1>
+    <p>Save Trees, Save Future 🌳</p>
+    <p><span lang="mr">झाडे वाचवा, भविष्य वाचवा 🌳</span></p>
+</header>
+
+<main>
+
+    <!-- INTRO SECTION WITH HERITAGE CARD -->
+    <div id="intro">
+        <div class="heritage-card">
+            <div class="heritage-tag">🌍 WORLD FOREST REPORT · WFR-2024</div>
+            <h2>Deforestation</h2>
+            <p class="scientific">वनतोड — A Global Crisis</p>
+            <p class="local-name">Forest Loss · Climate Impact · Biodiversity Threat</p>
+            <div class="stat-row">
+                <div class="stat-box">
+                    <div class="stat-num">15B</div>
+                    <div class="stat-label">Trees Cut<br>Per Year</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-num">31%</div>
+                    <div class="stat-label">Earth Covered<br>by Forest</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-num">4.7M</div>
+                    <div class="stat-label">Hectares Lost<br>Annually</div>
+                </div>
+            </div>
+        </div>
+
+        <section class="content">
+            <h3>Home / <span lang="mr">मुख्य माहिती</span></h3>
+            <p style="line-height:1.8; margin-bottom:12px;">
+                Deforestation is the large-scale removal of forests for human use — agriculture, logging, and urban expansion.
+                It is one of the biggest threats to our planet's health, driving climate change and species extinction.
+            </p>
+            <p style="line-height:1.8; color:#555; font-size:0.95em;" lang="mr">
+                वनतोड म्हणजे शेती, लाकूड तोड आणि शहरीकरणासाठी मोठ्या प्रमाणावर जंगले नष्ट करणे.
+                हवामान बदल आणि प्रजातींच्या नाशाला कारणीभूत असलेला हा सर्वात मोठा धोका आहे.
+            </p>
+        </section>
+    </div>
+
+    <!-- TREES SECTION WITH HERITAGE CARD -->
+    <div id="trees">
+        <div class="heritage-card">
+            <div class="heritage-tag">🌳 TREE HERITAGE TAG · NSK-TREE-0047</div>
+            <h2>Banyan Tree</h2>
+            <p class="scientific">Ficus benghalensis</p>
+            <p class="local-name">Vad / Bargad · Moraceae</p>
+            <div class="stat-row">
+                <div class="stat-box">
+                    <div class="stat-num">39</div>
+                    <div class="stat-label">Years<br>Old</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-num">1985</div>
+                    <div class="stat-label">Year<br>Planted</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-num">2024</div>
+                    <div class="stat-label">Year<br>Tagged</div>
+                </div>
+            </div>
+        </div>
+
+        <section class="content">
+            <h3>About Trees / <span lang="mr">झाडांची माहिती</span></h3>
+            <img class="tree-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Neem_tree.jpg/640px-Neem_tree.jpg" alt="Neem Tree">
+            <dl class="tree-grid">
+                <div class="tree-card">
+                    <dt>Tree Name</dt>
+                    <dd>Neem Tree<br><span lang="mr" style="font-size:12px;color:#777;">कडुलिंब</span></dd>
+                </div>
+                <div class="tree-card">
+                    <dt>Species</dt>
+                    <dd><em>Azadirachta indica</em></dd>
+                </div>
+                <div class="tree-card">
+                    <dt>Uses</dt>
+                    <dd>Medicine, air purification, shade<br><span lang="mr" style="font-size:12px;color:#777;">औषध, हवा शुद्ध करणे, सावली</span></dd>
+                </div>
+                <div class="tree-card">
+                    <dt>Benefits</dt>
+                    <dd>Improves air, supports wildlife, oxygen<br><span lang="mr" style="font-size:12px;color:#777;">हवा शुद्ध करते, ऑक्सिजन देते</span></dd>
+                </div>
+            </dl>
+        </section>
+    </div>
+
+    <!-- CAUSES SECTION WITH HERITAGE CARD -->
+    <div id="causes">
+        <div class="heritage-card">
+            <div class="heritage-tag">⚠️ THREAT REPORT · CAUSE-ANALYSIS-2024</div>
+            <h2>Main Causes</h2>
+            <p class="scientific">मुख्य कारणे — Root Problems</p>
+            <p class="local-name">Agriculture · Logging · Urbanisation · Mining</p>
+            <div class="stat-row">
+                <div class="stat-box">
+                    <div class="stat-num">80%</div>
+                    <div class="stat-label">Due to<br>Agriculture</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-num">13M</div>
+                    <div class="stat-label">Ha Lost<br>Each Decade</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-num">#1</div>
+                    <div class="stat-label">Amazon Most<br>Affected</div>
+                </div>
+            </div>
+        </div>
+
+        <section class="content">
+            <h3>Causes of Deforestation / <span lang="mr">वनतोडीची कारणे</span></h3>
+            <div class="causes-grid">
+                <div class="cause-card">
+                    <div class="cause-icon">🌾</div>
+                    <div class="cause-en">Agriculture Expansion</div>
+                    <div class="cause-mr" lang="mr">शेतीचा विस्तार</div>
+                </div>
+                <div class="cause-card">
+                    <div class="cause-icon">🪚</div>
+                    <div class="cause-en">Illegal Logging</div>
+                    <div class="cause-mr" lang="mr">बेकायदेशीर लाकूड तोड</div>
+                </div>
+                <div class="cause-card">
+                    <div class="cause-icon">🏙️</div>
+                    <div class="cause-en">Urbanisation</div>
+                    <div class="cause-mr" lang="mr">शहरीकरण</div>
+                </div>
+                <div class="cause-card">
+                    <div class="cause-icon">⛏️</div>
+                    <div class="cause-en">Mining Activities</div>
+                    <div class="cause-mr" lang="mr">खाण उत्खनन</div>
+                </div>
+                <div class="cause-card">
+                    <div class="cause-icon">🔥</div>
+                    <div class="cause-en">Forest Fires</div>
+                    <div class="cause-mr" lang="mr">जंगलातील आग</div>
+                </div>
+                <div class="cause-card">
+                    <div class="cause-icon">📄</div>
+                    <div class="cause-en">Paper Industry</div>
+                    <div class="cause-mr" lang="mr">कागद उद्योग</div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- EFFECTS SECTION WITH HERITAGE CARD -->
+    <div id="effects">
+        <div class="heritage-card">
+            <div class="heritage-tag">🌡️ IMPACT REPORT · ENV-EFFECTS-2024</div>
+            <h2>Effects on Earth</h2>
+            <p class="scientific">पृथ्वीवरील परिणाम — Environmental Impact</p>
+            <p class="local-name">Climate · Soil · Water · Wildlife</p>
+            <div class="stat-row">
+                <div class="stat-box">
+                    <div class="stat-num">1.5°C</div>
+                    <div class="stat-label">Temp Rise<br>This Century</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-num">137</div>
+                    <div class="stat-label">Species Lost<br>Per Day</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-num">20%</div>
+                    <div class="stat-label">CO₂ From<br>Deforestation</div>
+                </div>
+            </div>
+        </div>
+
+        <section class="content">
+            <h3>Effects on Environment / <span lang="mr">पर्यावरणावर होणारे परिणाम</span></h3>
+            <ul class="bilingual-list">
+                <li>
+                    <span class="lang-en">Increases greenhouse gases and global warming</span>
+                    <span class="lang-mr" lang="mr">हरितगृह वायू आणि जागतिक तापमान वाढते</span>
+                </li>
+                <li>
+                    <span class="lang-en">Causes soil erosion and land degradation</span>
+                    <span class="lang-mr" lang="mr">मातीची धूप आणि जमिनीचा ऱ्हास होतो</span>
+                </li>
+                <li>
+                    <span class="lang-en">Disrupts the water cycle and reduces rainfall</span>
+                    <span class="lang-mr" lang="mr">पाण्याचा चक्र विस्कळीत होतो, पाऊस कमी होतो</span>
+                </li>
+                <li>
+                    <span class="lang-en">Destroys habitats, threatening wildlife extinction</span>
+                    <span class="lang-mr" lang="mr">प्राण्यांचे अधिवास नष्ट होतात, प्रजाती नामशेष होतात</span>
+                </li>
+                <li>
+                    <span class="lang-en">Floods and droughts become more frequent</span>
+                    <span class="lang-mr" lang="mr">पूर आणि दुष्काळाची वारंवारता वाढते</span>
+                </li>
+            </ul>
+        </section>
+    </div>
+
+    <!-- ACTION SECTION WITH HERITAGE CARD -->
+    <div id="action">
+        <div class="heritage-card">
+            <div class="heritage-tag">💚 ACTION PLAN · CONSERVATION-2024</div>
+            <h2>Take Action</h2>
+            <p class="scientific">कृती करा — Steps to Save Forests</p>
+            <p class="local-name">Plant · Protect · Promote · Policy</p>
+            <div class="stat-row">
+                <div class="stat-box">
+                    <div class="stat-num">1T</div>
+                    <div class="stat-label">Trees to<br>Plant Goal</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-num">30%</div>
+                    <div class="stat-label">Land Under<br>Protection Goal</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-num">2030</div>
+                    <div class="stat-label">UN Forest<br>Target Year</div>
+                </div>
+            </div>
+        </div>
+
+        <section class="content">
+            <h3>How to Help / <span lang="mr">आपण काय करू शकतो</span></h3>
+            <ul class="bilingual-list">
+                <li>
+                    <span class="lang-en">Plant trees and participate in afforestation drives</span>
+                    <span class="lang-mr" lang="mr">झाडे लावा आणि वृक्षारोपण मोहिमांमध्ये सहभागी व्हा</span>
+                </li>
+                <li>
+                    <span class="lang-en">Reduce paper use — go digital where possible</span>
+                    <span class="lang-mr" lang="mr">कागदाचा वापर कमी करा, शक्य तिथे डिजिटल वापरा</span>
+                </li>
+                <li>
+                    <span class="lang-en">Buy from sustainable and certified wood sources</span>
+                    <span class="lang-mr" lang="mr">प्रमाणित टिकाऊ लाकूड स्रोतांकडूनच खरेदी करा</span>
+                </li>
+                <li>
+                    <span class="lang-en">Spread awareness in your school and community</span>
+                    <span class="lang-mr" lang="mr">शाळा आणि समाजात जागरूकता पसरवा</span>
+                </li>
+                <li>
+                    <span class="lang-en">Support NGOs and laws protecting forests</span>
+                    <span class="lang-mr" lang="mr">जंगल संरक्षण करणाऱ्या संस्था आणि कायद्यांना पाठिंबा द्या</span>
+                </li>
+            </ul>
+        </section>
+    </div>
+
+    <!-- FACTS SECTION WITH HERITAGE CARD -->
+    <div id="facts">
+        <div class="heritage-card">
+            <div class="heritage-tag">📊 DATA REPORT · FOREST-STATS-2024</div>
+            <h2>Key Facts</h2>
+            <p class="scientific">महत्त्वाची तथ्ये — Numbers that Matter</p>
+            <p class="local-name">Global · Annual · Historical Data</p>
+            <div class="stat-row">
+                <div class="stat-box">
+                    <div class="stat-num">4B</div>
+                    <div class="stat-label">Total Hectares<br>of Forest</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-num">46%</div>
+                    <div class="stat-label">Forests Lost<br>Since Ice Age</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-num">1.6B</div>
+                    <div class="stat-label">People Depend<br>on Forests</div>
+                </div>
+            </div>
+        </div>
+
+        <section class="content">
+            <h3>Extra Information / <span lang="mr">अतिरिक्त माहिती</span></h3>
+            <div class="fact-grid">
+                <div class="fact-tile">
+                    <div class="fact-num">31%</div>
+                    <div class="fact-label">of Earth's land is covered by forests</div>
+                    <div class="fact-mr" lang="mr">पृथ्वीच्या जमिनीपैकी ३१% जंगलांनी व्यापलेली</div>
+                </div>
+                <div class="fact-tile">
+                    <div class="fact-num">80%</div>
+                    <div class="fact-label">of land species live in forests</div>
+                    <div class="fact-mr" lang="mr">जमिनीवरील ८०% प्रजाती जंगलात राहतात</div>
+                </div>
+                <div class="fact-tile">
+                    <div class="fact-num">2050</div>
+                    <div class="fact-label">year forests may disappear if no action taken</div>
+                    <div class="fact-mr" lang="mr">कारवाई न केल्यास जंगले नष्ट होण्याचे वर्ष</div>
+                </div>
+                <div class="fact-tile">
+                    <div class="fact-num">420M</div>
+                    <div class="fact-label">hectares lost in the last 90 years</div>
+                    <div class="fact-mr" lang="mr">गेल्या ९० वर्षांत ४२ कोटी हेक्टर नष्ट झाले</div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+</main>
+
+<footer>
+    <p><strong>Prevention of Deforestation</strong></p>
+    <p style="margin-top:6px;">Educational Resource · <span lang="mr">शैक्षणिक उद्देशासाठी तयार केले</span></p>
+</footer>
+
+</body>
+</html>
