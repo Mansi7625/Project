@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banyan Tree — Ficus benghalensis</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --green-deep: #1a4a2e;
+            --green-mid: #2e7d32;
+            --green-card: #1f5c38;
+            --green-light: #eaf7ea;
+            --green-accent: #4caf50;
+            --text-light: #e8f5e9;
+            --text-muted: #a5d6a7;
+            --stat-bg: #174030;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--green-light);
+            color: #1a1a1a;
+        }
+
+        /* NAV */
+        nav {
+            background: var(--green-deep);
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 4px;
+            padding: 10px 20px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        nav a {
+            color: var(--text-muted);
+            text-decoration: none;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 500;
+            transition: background 0.2s, color 0.2s;
+        }
+        nav a:hover { background: var(--green-mid); color: white; }
+
+        /* HEADER */
+        header {
+            background: linear-gradient(160deg, #1a4a2e 0%, #2e7d32 100%);
+            color: white;
+            text-align: center;
+            padding: 50px 20px 40px;
+            position: relative;
+            overflow: hidden;
+        }
+        header::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: radial-gradient(circle, rgba(255,255,255,0.04) 1px, transparent 1px);
+            background-size: 28px 28px;
+        }
+        header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.6rem;
+            margin-bottom: 12px;
+            position: relative;
+        }
+        header p {
+            font-size: 1rem;
+            opacity: 0.85;
+            margin-top: 5px;
+            position: relative;
+        }
+
+        /* MAIN */
+        main { max-width: 900px; margin: 0 auto; padding: 24px 16px 40px; }
+
+        /* HERITAGE CARD */
+        .heritage-card {
+            background: linear-gradient(135deg, var(--green-mid) 0%, var(--green-deep) 100%);
+            border-radius: 20px;
+            padding: 28px 28px 24px;
+            margin-bottom: 28px;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        .heritage-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: radial-gradient(circle, rgba(255,255,255,0.05) 1px, transparent 1px);
+            background-size: 22px 22px;
+            pointer-events: none;
+        }
+        .heritage-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255,255,255,0.12);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 30px;
+            padding: 5px 14px;
+            font-size: 12px;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 18px;
+            color: var(--text-muted);
+        }
+        .heritage-card h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: white;
+            border: none;
+            padding: 0;
+            margin-bottom: 6px;
+            line-height: 1.2;
+        }
+        .heritage-card .scientific {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            margin-bottom: 4px;
+        }
+        .heritage-card .local-name {
+            font-size: 0.95rem;
+            color: rgba(255,255,255,0.6);
+            margin-bottom: 22px;
+        }
+        .stat-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+        }
+        .stat-box {
+            background: var(--stat-bg);
+            border-radius: 14px;
+            padding: 18px 12px;
+            text-align: center;
+        }
+        .stat-box .stat-num {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--text-muted);
+            line-height: 1;
+            margin-bottom: 6px;
+        }
+        .stat-box .stat-label {
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.5);
+            line-height: 1.4;
+        }
+
+        /* CONTENT SECTIONS */
+        section.content {
+            background: white;
+            border-radius: 14px;
+            padding: 24px 26px;
+            margin-bottom: 28px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+        }
+        section.content h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.25rem;
+            color: var(--green-mid);
+            margin-bottom: 16px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--green-light);
+        }
+
+        /* BILINGUAL LIST */
+        .bilingual-list { list-style: none; padding: 0; }
+        .bilingual-list li {
+            padding: 11px 0;
+            border-bottom: 1px solid #f0f0f0;
+            line-height: 1.6;
+        }
+        .bilingual-list li:last-child { border-bottom: none; }
+        .lang-en { display: block; color: #1a1a1a; font-weight: 500; }
+        .lang-mr { display: block; color: #777; font-size: 0.9em; margin-top: 2px; }
+
+        /* FACT GRID */
+        .fact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 14px;
+        }
+        .fact-tile {
+            background: var(--green-light);
+            border-radius: 12px;
+            padding: 18px 16px;
+            border-left: 4px solid var(--green-mid);
+        }
+        .fact-tile .fact-num {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: var(--green-mid);
+            line-height: 1;
+            margin-bottom: 6px;
+        }
+        .fact-tile .fact-label { font-size: 13px; color: #444; line-height: 1.4; }
+        .fact-tile .fact-mr { font-size: 12px; color: #888; margin-top: 3px; }
+
+        /* SPECIES TABLE */
+        .species-table { width: 100%; border-collapse: collapse; }
+        .species-table th {
+            background: var(--green-light);
+            color: var(--green-mid);
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.07em;
+            padding: 10px 14px;
+            text-align: left;
+            border-bottom: 2px solid #c8e6c9;
+        }
+        .species-table td {
+            padding: 11px 14px;
+            border-bottom: 1px solid #f0f0f0;
+            font-size: 14px;
+            vertical-align: top;
+        }
+        .species-table tr:last-child td { border-bottom: none; }
+        .species-table tr:hover td { background: #f6fdf6; }
+        .species-name { font-style: italic; font-weight: 500; color: #1a1a1a; }
+        .species-common { color: #333; }
+        .species-location { color: #2e7d32; font-size: 13px; }
+        .species-marathi { color: #888; font-size: 12px; }
+
+        /* LOCATION GRID */
+        .location-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 12px;
+        }
+        .location-card {
+            background: var(--green-light);
+            border-radius: 12px;
+            padding: 14px 16px;
+            border: 1px solid #c8e6c9;
+            text-align: center;
+        }
+        .location-card .loc-icon { font-size: 22px; margin-bottom: 7px; }
+        .location-card .loc-name { font-size: 13px; font-weight: 500; color: #1a1a1a; }
+        .location-card .loc-mr { font-size: 11px; color: #888; margin-top: 2px; }
+
+        /* USES GRID */
+        .uses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 12px;
+        }
+        .use-card {
+            background: #f0f9f0;
+            border-radius: 12px;
+            padding: 16px;
+            border-left: 4px solid var(--green-accent);
+            text-align: center;
+        }
+        .use-card .use-icon { font-size: 24px; margin-bottom: 8px; }
+        .use-card .use-en { font-size: 13px; font-weight: 500; color: #333; }
+        .use-card .use-mr { font-size: 12px; color: #888; margin-top: 3px; }
+
+        /* TREE IMAGE */
+        img.tree-img {
+            width: 100%;
+            max-width: 480px;
+            border-radius: 14px;
+            display: block;
+            margin: 0 auto 22px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+        }
+
+        /* FOOTER */
+        footer {
+            background: var(--green-deep);
+            color: var(--text-muted);
+            text-align: center;
+            padding: 26px 16px;
+            font-size: 13px;
+        }
+        footer strong { color: white; }
+
+        @media (max-width: 500px) {
+            header h1 { font-size: 1.8rem; }
+            .heritage-card h2 { font-size: 1.6rem; }
+            .stat-row { grid-template-columns: repeat(3, 1fr); }
+            .stat-box .stat-num { font-size: 1.3rem; }
+            .species-table th, .species-table td { padding: 8px 10px; font-size: 12px; }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <a href="#overview">Overview</a>
+    <a href="#species">Species</a>
+    <a href="#location">Where Found</a>
+    <a href="#ecology">Ecology</a>
+    <a href="#uses">Uses</a>
+    <a href="#culture">Culture</a>
+    <a href="#facts">Facts</a>
+</nav>
+
+<header>
+    <h1>Banyan Tree 🌳</h1>
+    <p><em>Ficus benghalensis</em> — National Tree of India</p>
+    <p><span lang="mr">वटवृक्ष — भारताचे राष्ट्रीय झाड</span></p>
+</header>
+
+<main>
+
+    <!-- OVERVIEW -->
+    <div id="overview">
+        <div class="heritage-card">
+            <div class="heritage-tag">🌳 TREE HERITAGE TAG · NSK-TREE-0047 · <span lang="mr">वृक्ष वारसा टॅग</span></div>
+            <h2>Banyan Tree<br><small style="font-size:1.1rem;font-style:italic;opacity:0.8;" lang="mr">वटवृक्ष</small></h2>
+            <p class="scientific">Ficus benghalensis</p>
+            <p class="local-name">Vad / Bargad / Vatavriksha · Family: Moraceae<br><span lang="mr">वड / बरगड / वटवृक्ष · कुळ: Moraceae</span></p>
+            <div class="stat-row">
+                <div class="stat-box">
+                    <div class="stat-num">500+</div>
+                    <div class="stat-label">Max Age<br>in Years<br><span lang="mr" style="font-size:10px;opacity:0.7;">कमाल वय (वर्षे)</span></div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-num">200m</div>
+                    <div class="stat-label">Max Canopy<br>Spread<br><span lang="mr" style="font-size:10px;opacity:0.7;">कमाल छत पसरणे</span></div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-num">30m</div>
+                    <div class="stat-label">Max<br>Height<br><span lang="mr" style="font-size:10px;opacity:0.7;">कमाल उंची</span></div>
+                </div>
+            </div>
+        </div>
+
+        <section class="content">
+            <h3>Overview / <span lang="mr">परिचय</span></h3>
+            <img class="tree-img"
+                 src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Banyan_tree_in_Hilo.jpg/800px-Banyan_tree_in_Hilo.jpg"
+                 alt="Banyan Tree with aerial roots">
+            <p style="line-height:1.8; margin-bottom:12px;">
+                The Banyan Tree (<em>Ficus benghalensis</em>) is the National Tree of India. Known for its massive
+                canopy and hanging aerial roots that grow into secondary trunks, a single tree can spread over
+                several acres, resembling an entire forest by itself. It is one of the longest-living trees on Earth.
+            </p>
+            <p style="line-height:1.8; color:#555; font-size:0.95em;" lang="mr">
+                वटवृक्ष (Ficus benghalensis) हे भारताचे राष्ट्रीय झाड आहे. हवेतून खाली येणाऱ्या मुळांमुळे
+                एकच झाड संपूर्ण जंगलासारखे दिसते. हे पृथ्वीवरील सर्वाधिक काळ जगणाऱ्या झाडांपैकी एक आहे.
+            </p>
+        </section>
+    </div>
+
+    <!-- SPECIES -->
+    <div id="species">
+        <div class="heritage-card">
+            <div class="heritage-tag">🔬 TAXONOMY RECORD · FICUS-SPECIES-2024 · <span lang="mr">वर्गीकरण नोंद</span></div>
+            <h2>Species & Relatives<br><small style="font-size:1.1rem;font-style:italic;opacity:0.8;" lang="mr">प्रजाती व नातेवाईक</small></h2>
+            <p class="scientific">Genus: Ficus — Family: Moraceae</p>
+            <p class="local-name">Over 800 species in the Ficus genus worldwide<br><span lang="mr">जगभरात Ficus वंशात ८०० हून अधिक प्रजाती</span></p>
+            <div class="stat-row">
+                <div class="stat-box">
+                    <div class="stat-num">800+</div>
+                    <div class="stat-label">Ficus<br>Species<br><span lang="mr" style="font-size:10px;opacity:0.7;">Ficus प्रजाती</span></div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-num">5</div>
+                    <div class="stat-label">Native Indian<br>Species<br><span lang="mr" style="font-size:10px;opacity:0.7;">भारतीय प्रजाती</span></div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-num">~850</div>
+                    <div class="stat-label">Pollinator<br>Fig Wasp Sp.<br><span lang="mr" style="font-size:10px;opacity:0.7;">परागीकरण माशी</span></div>
+                </div>
+            </div>
+        </div>
+
+        <section class="content">
+            <h3>Banyan & Related Species / <span lang="mr">प्रजाती माहिती</span></h3>
+            <p style="font-size:13px; color:#888; margin-bottom:14px;">Common and related Ficus species found across India and the world: · <span lang="mr">भारत आणि जगभरात आढळणाऱ्या Ficus प्रजाती:</span></p>
+            <table class="species-table">
+                <thead>
+                    <tr>
+                        <th>Scientific Name<br><span lang="mr" style="font-size:10px;font-weight:400;opacity:0.7;">शास्त्रीय नाव</span></th>
+                        <th>Common Name<br><span lang="mr" style="font-size:10px;font-weight:400;opacity:0.7;">सामान्य नाव</span></th>
+                        <th>Local / Marathi<br><span lang="mr" style="font-size:10px;font-weight:400;opacity:0.7;">स्थानिक / मराठी</span></th>
+                        <th>Where Found<br><span lang="mr" style="font-size:10px;font-weight:400;opacity:0.7;">कुठे आढळते</span></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="species-name">Ficus benghalensis</span></td>
+                        <td class="species-common">Banyan Tree<br><span lang="mr" style="font-size:12px;color:#888;">वटवृक्ष</span></td>
+                        <td class="species-marathi" lang="mr">वड / वटवृक्ष</td>
+                        <td class="species-location">India, Pakistan, Sri Lanka, Bangladesh<br><span lang="mr" style="font-size:12px;">भारत, पाकिस्तान, श्रीलंका, बांगलादेश</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="species-name">Ficus religiosa</span></td>
+                        <td class="species-common">Peepal / Sacred Fig<br><span lang="mr" style="font-size:12px;color:#888;">पिंपळ / पवित्र अंजीर</span></td>
+                        <td class="species-marathi" lang="mr">पिंपळ</td>
+                        <td class="species-location">India, Nepal, Southeast Asia<br><span lang="mr" style="font-size:12px;">भारत, नेपाळ, आग्नेय आशिया</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="species-name">Ficus racemosa</span></td>
+                        <td class="species-common">Cluster Fig / Gular<br><span lang="mr" style="font-size:12px;color:#888;">उंबर / गुलर</span></td>
+                        <td class="species-marathi" lang="mr">उंबर</td>
+                        <td class="species-location">India, Australia, Southeast Asia<br><span lang="mr" style="font-size:12px;">भारत, ऑस्ट्रेलिया, आग्नेय आशिया</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="species-name">Ficus carica</span></td>
+                        <td class="species-common">Common Fig<br><span lang="mr" style="font-size:12px;color:#888;">सामान्य अंजीर</span></td>
+                        <td class="species-marathi" lang="mr">अंजीर</td>
+                        <td class="species-location">Mediterranean, West Asia, cultivated globally<br><span lang="mr" style="font-size:12px;">भूमध्यसागरीय, पश्चिम आशिया, जगभर लागवड</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="species-name">Ficus elastica</span></td>
+                        <td class="species-common">Rubber Fig / Indian Rubber Tree<br><span lang="mr" style="font-size:12px;color:#888;">रबर वृक्ष</span></td>
+                        <td class="species-marathi" lang="mr">रबर वृक्ष</td>
+                        <td class="species-location">Northeast India, Southeast Asia<br><span lang="mr" style="font-size:12px;">ईशान्य भारत, आग्नेय आशिया</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="species-name">Ficus lyrata</span></td>
+                        <td class="species-common">Fiddle-leaf Fig<br><span lang="mr" style="font-size:12px;color:#888;">फिडल-लीफ अंजीर</span></td>
+                        <td class="species-marathi" lang="mr">—</td>
+                        <td class="species-location">Tropical West Africa<br><span lang="mr" style="font-size:12px;">उष्णकटिबंधीय पश्चिम आफ्रिका</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="species-name">Ficus microcarpa</span></td>
+                        <td class="species-common">Chinese Banyan / Indian Laurel<br><span lang="mr" style="font-size:12px;color:#888;">चीनी वटवृक्ष</span></td>
+                        <td class="species-marathi" lang="mr">—</td>
+                        <td class="species-location">South Asia, East Asia, Pacific Islands<br><span lang="mr" style="font-size:12px;">दक्षिण आशिया, पूर्व आशिया, पॅसिफिक</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="species-name">Ficus pumila</span></td>
+                        <td class="species-common">Creeping Fig<br><span lang="mr" style="font-size:12px;color:#888;">रांगणारा अंजीर</span></td>
+                        <td class="species-marathi" lang="mr">—</td>
+                        <td class="species-location">East Asia, widely cultivated<br><span lang="mr" style="font-size:12px;">पूर्व आशिया, व्यापक लागवड</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="species-name">Ficus auriculata</span></td>
+                        <td class="species-common">Roxburgh's Fig / Elephant Ear Fig<br><span lang="mr" style="font-size:12px;color:#888;">हत्तीकान अंजीर</span></td>
+                        <td class="species-marathi" lang="mr">—</td>
+                        <td class="species-location">India, Nepal, China, Southeast Asia<br><span lang="mr" style="font-size:12px;">भारत, नेपाळ, चीन, आग्नेय आशिया</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="species-name">Ficus virens</span></td>
+                        <td class="species-common">White Fig / Spotted Fig<br><span lang="mr" style="font-size:12px;color:#888;">पांढरा अंजीर</span></td>
+                        <td class="species-marathi" lang="mr">पाकर</td>
+                        <td class="species-location">India, Southeast Asia, Australia<br><span lang="mr" style="font-size:12px;">भारत, आग्नेय आशिया, ऑस्ट्रेलिया</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </div>
+
+    <!-- WHERE FOUND -->
+    <div id="location">
+        <div class="heritage-card">
+            <div class="heritage-tag">📍 DISTRIBUTION MAP · GEO-RANGE-2024 · <span lang="mr">वितरण नकाशा</span></div>
+            <h2>Where It Grows<br><small style="font-size:1.1rem;font-style:italic;opacity:0.8;" lang="mr">कुठे वाढते</small></h2>
+            <p class="scientific">Native Range — Tropical & Subtropical Asia</p>
+            <p class="local-name">India · Pakistan · Sri Lanka · Bangladesh · Myanmar · Nepal<br><span lang="mr">भारत · पाकिस्तान · श्रीलंका · बांगलादेश · म्यानमार · नेपाळ</span></p>
+            <div class="stat-row">
+                <div class="stat-box">
+                    <div class="stat-num">28°C</div>
+                    <div class="stat-label">Ideal Avg<br>Temperature<br><span lang="mr" style="font-size:10px;opacity:0.7;">आदर्श तापमान</span></div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-num">1200mm</div>
+                    <div class="stat-label">Annual<br>Rainfall<br><span lang="mr" style="font-size:10px;opacity:0.7;">वार्षिक पाऊस</span></div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-num">0–1000m</div>
+                    <div class="stat-label">Altitude<br>Range<br><span lang="mr" style="font-size:10px;opacity:0.7;">उंचीची श्रेणी</span></div>
+                </div>
+            </div>
+        </div>
+
+        <section class="content">
+            <h3>Regions Where Banyan Grows / <span lang="mr">वटवृक्ष कुठे आढळतो</span></h3>
+            <div class="location-grid">
+                <div class="location-card">
+                    <div class="loc-icon">🇮🇳</div>
+                    <div class="loc-name">India</div>
+                    <div class="loc-mr" lang="mr">भारत — सर्वत्र</div>
+                </div>
+                <div class="location-card">
+                    <div class="loc-icon">🇵🇰</div>
+                    <div class="loc-name">Pakistan</div>
+                    <div class="loc-mr" lang="mr">पाकिस्तान</div>
+                </div>
+                <div class="location-card">
+                    <div class="loc-icon">🇱🇰</div>
+                    <div class="loc-name">Sri Lanka</div>
+                    <div class="loc-mr" lang="mr">श्रीलंका</div>
+                </div>
+                <div class="location-card">
+                    <div class="loc-icon">🇧🇩</div>
+                    <div class="loc-name">Bangladesh</div>
+                    <div class="loc-mr" lang="mr">बांगलादेश</div>
+                </div>
+                <div class="location-card">
+                    <div class="loc-icon">🇳🇵</div>
+                    <div class="loc-name">Nepal</div>
+                    <div class="loc-mr" lang="mr">नेपाळ</div>
+                </div>
+                <div class="location-card">
+                    <div class="loc-icon">🇲🇲</div>
+                    <div class="loc-name">Myanmar</div>
+                    <div class="loc-mr" lang="mr">म्यानमार</div>
+                </div>
+                <div class="location-card">
+                    <div class="loc-icon">🌴</div>
+                    <div class="loc-name">Southeast Asia</div>
+                    <div class="loc-mr" lang="mr">आग्नेय आशिया</div>
+                </div>
+                <div class="location-card">
+                    <div class="loc-icon">🌺</div>
+                    <div class="loc-name">Hawaii / Florida</div>
+                    <div class="loc-mr" lang="mr">अमेरिका (लागवड)</div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- ECOLOGY -->
+    <div id="ecology">
+        <div class="heritage-card">
+            <div class="heritage-tag">🌿 ECOLOGY REPORT · BIO-BANYAN-2024 · <span lang="mr">पर्यावरण अहवाल</span></div>
+            <h2>Ecology & Biology<br><small style="font-size:1.1rem;font-style:italic;opacity:0.8;" lang="mr">पर्यावरण व जीवशास्त्र</small></h2>
+            <p class="scientific">Hemiepiphyte — Aerial Roots — Strangler Fig</p>
+            <p class="local-name">Canopy · Roots · Fruits · Pollinators · Wildlife<br><span lang="mr">छत · मुळे · फळे · परागकण · वन्यजीव</span></p>
+            <div class="stat-row">
+                <div class="stat-box">
+                    <div class="stat-num">100+</div>
+                    <div class="stat-label">Bird Species<br>Use It<br><span lang="mr" style="font-size:10px;opacity:0.7;">पक्षी प्रजाती</span></div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-num">3000+</div>
+                    <div class="stat-label">Prop Roots<br>Thane Tree<br><span lang="mr" style="font-size:10px;opacity:0.7;">आधारमुळे</span></div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-num">2 acres</div>
+                    <div class="stat-label">Largest Known<br>Canopy (India)<br><span lang="mr" style="font-size:10px;opacity:0.7;">सर्वात मोठी छत</span></div>
+                </div>
+            </div>
+        </div>
+
+        <section class="content">
+            <h3>Ecological Features / <span lang="mr">पर्यावरणीय वैशिष्ट्ये</span></h3>
+            <ul class="bilingual-list">
+                <li>
+                    <span class="lang-en">Aerial prop roots descend from branches and become secondary trunks over time</span>
+                    <span class="lang-mr" lang="mr">फांद्यांमधून हवेतील मुळे खाली येतात आणि दुय्यम खोडांमध्ये रूपांतरित होतात</span>
+                </li>
+                <li>
+                    <span class="lang-en">Classified as a "strangler fig" — begins life as an epiphyte on host trees</span>
+                    <span class="lang-mr" lang="mr">हे "स्ट्रँगलर फिग" म्हणून ओळखले जाते — सुरुवातीला दुसऱ्या झाडावर उगवते</span>
+                </li>
+                <li>
+                    <span class="lang-en">Fruits (figs) are eaten by over 100 species of birds and many mammals</span>
+                    <span class="lang-mr" lang="mr">फळे (अंजीर) १०० हून अधिक पक्षी प्रजाती आणि अनेक सस्तन प्राणी खातात</span>
+                </li>
+                <li>
+                    <span class="lang-en">Pollinated exclusively by the tiny fig wasp (<em>Eupristina masoni</em>)</span>
+                    <span class="lang-mr" lang="mr">फक्त अंजीर माशी (Eupristina masoni) द्वारे परागीकरण होते</span>
+                </li>
+                <li>
+                    <span class="lang-en">Dense canopy provides habitat for birds, reptiles, insects and bats</span>
+                    <span class="lang-mr" lang="mr">घनदाट छत पक्षी, सरपटणारे प्राणी, कीटक आणि वटवाघुळांना आश्रय देते</span>
+                </li>
+                <li>
+                    <span class="lang-en">A single tree can cover several acres — India's Great Banyan in Howrah spans 3.5 acres</span>
+                    <span class="lang-mr" lang="mr">एकच झाड अनेक एकर व्यापू शकते — हावराचे "ग्रेट बॅनियन" ३.५ एकरवर पसरलेले आहे</span>
+                </li>
+            </ul>
+        </section>
+    </div>
+
+    <!-- USES -->
+    <div id="uses">
+        <div class="heritage-card">
+            <div class="heritage-tag">💊 USES REPORT · BANYAN-UTILITY-2024 · <span lang="mr">उपयोग अहवाल</span></div>
+            <h2>Uses of Banyan Tree<br><small style="font-size:1.1rem;font-style:italic;opacity:0.8;" lang="mr">वटवृक्षाचे उपयोग</small></h2>
+            <p class="scientific">वटवृक्षाचे उपयोग — Medicine · Shade · Industry</p>
+            <p class="local-name">Ayurveda · Timber · Food · Environment · Daily Life<br><span lang="mr">आयुर्वेद · लाकूड · अन्न · पर्यावरण · दैनंदिन जीवन</span></p>
+            <div class="stat-row">
+                <div class="stat-box">
+                    <div class="stat-num">50+</div>
+                    <div class="stat-label">Medicinal<br>Applications<br><span lang="mr" style="font-size:10px;opacity:0.7;">औषधी उपयोग</span></div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-num">3000</div>
+                    <div class="stat-label">Years of<br>Ayurvedic Use<br><span lang="mr" style="font-size:10px;opacity:0.7;">आयुर्वेदातील वर्षे</span></div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-num">100%</div>
+                    <div class="stat-label">All Parts<br>Useful<br><span lang="mr" style="font-size:10px;opacity:0.7;">सर्व भाग उपयुक्त</span></div>
+                </div>
+            </div>
+        </div>
+
+        <section class="content">
+            <h3>How Banyan Is Used / <span lang="mr">वटवृक्षाचे उपयोग</span></h3>
+            <div class="uses-grid">
+                <div class="use-card">
+                    <div class="use-icon">💊</div>
+                    <div class="use-en">Ayurvedic Medicine</div>
+                    <div class="use-mr" lang="mr">आयुर्वेदिक औषध</div>
+                </div>
+                <div class="use-card">
+                    <div class="use-icon">☀️</div>
+                    <div class="use-en">Shade & Shelter</div>
+                    <div class="use-mr" lang="mr">सावली व निवारा</div>
+                </div>
+                <div class="use-card">
+                    <div class="use-icon">🪵</div>
+                    <div class="use-en">Timber & Furniture</div>
+                    <div class="use-mr" lang="mr">लाकूड व फर्निचर</div>
+                </div>
+                <div class="use-card">
+                    <div class="use-icon">🍃</div>
+                    <div class="use-en">Leaf Plates (Patravali)</div>
+                    <div class="use-mr" lang="mr">पत्रावळी</div>
+                </div>
+                <div class="use-card">
+                    <div class="use-icon">🌬️</div>
+                    <div class="use-en">Air Purification</div>
+                    <div class="use-mr" lang="mr">हवा शुद्धीकरण</div>
+                </div>
+                <div class="use-card">
+                    <div class="use-icon">🦷</div>
+                    <div class="use-en">Aerial Roots as Toothbrush</div>
+                    <div class="use-mr" lang="mr">दातांसाठी मुळांचा वापर</div>
+                </div>
+                <div class="use-card">
+                    <div class="use-icon">🐄</div>
+                    <div class="use-en">Fodder for Animals</div>
+                    <div class="use-mr" lang="mr">जनावरांसाठी चारा</div>
+                </div>
+                <div class="use-card">
+                    <div class="use-icon">🏫</div>
+                    <div class="use-en">Community Gathering Space</div>
+                    <div class="use-mr" lang="mr">सामाजिक मेळाव्याचे ठिकाण</div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- CULTURAL SIGNIFICANCE -->
+    <div id="culture">
+        <div class="heritage-card">
+            <div class="heritage-tag">🕉️ CULTURAL REPORT · HERITAGE-BANYAN-2024 · <span lang="mr">सांस्कृतिक अहवाल</span></div>
+            <h2>Cultural Significance<br><small style="font-size:1.1rem;font-style:italic;opacity:0.8;" lang="mr">सांस्कृतिक महत्त्व</small></h2>
+            <p class="scientific">सांस्कृतिक महत्त्व — Religion · Mythology · Tradition</p>
+            <p class="local-name">Hinduism · Buddhism · Indian History · Folklore<br><span lang="mr">हिंदू धर्म · बौद्ध धर्म · भारतीय इतिहास · लोककथा</span></p>
+            <div class="stat-row">
+                <div class="stat-box">
+                    <div class="stat-num">1950</div>
+                    <div class="stat-label">Year Declared<br>National Tree<br><span lang="mr" style="font-size:10px;opacity:0.7;">राष्ट्रीय झाड घोषित</span></div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-num">3500+</div>
+                    <div class="stat-label">Years in<br>Indian Culture<br><span lang="mr" style="font-size:10px;opacity:0.7;">भारतीय संस्कृतीत वर्षे</span></div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-num">🕉️</div>
+                    <div class="stat-label">Sacred in<br>Hinduism<br><span lang="mr" style="font-size:10px;opacity:0.7;">हिंदू धर्मात पवित्र</span></div>
+                </div>
+            </div>
+        </div>
+
+        <section class="content">
+            <h3>Cultural & Religious Importance / <span lang="mr">सांस्कृतिक व धार्मिक महत्त्व</span></h3>
+            <ul class="bilingual-list">
+                <li>
+                    <span class="lang-en">Declared the National Tree of India in 1950 — symbolises longevity and strength</span>
+                    <span class="lang-mr" lang="mr">१९५० मध्ये भारताचे राष्ट्रीय झाड घोषित — दीर्घायुष्य आणि ताकदीचे प्रतीक</span>
+                </li>
+                <li>
+                    <span class="lang-en">In Hinduism, the Banyan (Vat) is sacred — Vat Savitri Puja is observed by married women</span>
+                    <span class="lang-mr" lang="mr">हिंदू धर्मात वड पवित्र आहे — वटसावित्री पूजा विवाहित महिला करतात</span>
+                </li>
+                <li>
+                    <span class="lang-en">Lord Vishnu is believed to rest under the Banyan during cosmic dissolution (Pralaya)</span>
+                    <span class="lang-mr" lang="mr">प्रलयकाळात भगवान विष्णू वटवृक्षाच्या पानावर विश्रांती घेतात असे मानले जाते</span>
+                </li>
+                <li>
+                    <span class="lang-en">Referred to as "Kalpavriksha" — the wish-fulfilling divine tree in Hindu mythology</span>
+                    <span class="lang-mr" lang="mr">हिंदू पुराणात "कल्पवृक्ष" म्हणून उल्लेख — इच्छापूर्ण दैवी वृक्ष</span>
+                </li>
+                <li>
+                    <span class="lang-en">Village Banyan trees traditionally served as courts, markets, and meeting places</span>
+                    <span class="lang-mr" lang="mr">गावातील वटवृक्ष पारंपरिकपणे न्यायालय, बाजार आणि सभास्थान म्हणून वापरले जात असे</span>
+                </li>
+            </ul>
+        </section>
+    </div>
+
+    <!-- FACTS -->
+    <div id="facts">
+        <div class="heritage-card">
+            <div class="heritage-tag">📊 AMAZING FACTS · BANYAN-DATA-2024 · <span lang="mr">अद्भुत तथ्ये</span></div>
+            <h2>Amazing Facts<br><small style="font-size:1.1rem;font-style:italic;opacity:0.8;" lang="mr">अद्भुत तथ्ये</small></h2>
+            <p class="scientific">अद्भुत तथ्ये — Numbers Worth Knowing</p>
+            <p class="local-name">Size · Age · Records · Biology<br><span lang="mr">आकार · वय · विक्रम · जीवशास्त्र</span></p>
+            <div class="stat-row">
+                <div class="stat-box">
+                    <div class="stat-num">250</div>
+                    <div class="stat-label">Age of Great<br>Banyan (Howrah)<br><span lang="mr" style="font-size:10px;opacity:0.7;">ग्रेट बॅनियनचे वय</span></div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-num">3600m²</div>
+                    <div class="stat-label">Canopy of<br>Great Banyan<br><span lang="mr" style="font-size:10px;opacity:0.7;">छताचे क्षेत्रफळ</span></div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-num">3500+</div>
+                    <div class="stat-label">Prop Roots<br>Great Banyan<br><span lang="mr" style="font-size:10px;opacity:0.7;">आधारमुळांची संख्या</span></div>
+                </div>
+            </div>
+        </div>
+
+        <section class="content">
+            <h3>Key Facts / <span lang="mr">महत्त्वाची तथ्ये</span></h3>
+            <div class="fact-grid">
+                <div class="fact-tile">
+                    <div class="fact-num">250 yrs</div>
+                    <div class="fact-label">The Great Banyan in Howrah is ~250 years old — world's largest banyan</div>
+                    <div class="fact-mr" lang="mr">हावराचा ग्रेट बॅनियन जगातील सर्वात मोठा वटवृक्ष आहे</div>
+                </div>
+                <div class="fact-tile">
+                    <div class="fact-num">Immortal</div>
+                    <div class="fact-label">A Banyan never truly "dies" — it keeps expanding outward indefinitely</div>
+                    <div class="fact-mr" lang="mr">वटवृक्ष कधीही खऱ्या अर्थाने "मरत नाही" — तो सतत पसरत राहतो</div>
+                </div>
+                <div class="fact-tile">
+                    <div class="fact-num">O₂ ↑</div>
+                    <div class="fact-label">One mature Banyan produces enough oxygen for several families daily</div>
+                    <div class="fact-mr" lang="mr">एक प्रौढ वटवृक्ष दररोज अनेक कुटुंबांसाठी पुरेसा ऑक्सिजन निर्माण करतो</div>
+                </div>
+                <div class="fact-tile">
+                    <div class="fact-num">Ficus</div>
+                    <div class="fact-label">Part of the Ficus genus with 800+ species — all related to the fig fruit</div>
+                    <div class="fact-mr" lang="mr">Ficus वंशात ८०० हून अधिक प्रजाती — सर्व अंजीर फळाशी संबंधित</div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+</main>
+
+<footer>
+    <p><strong>Banyan Tree — Ficus benghalensis</strong></p>
+    <p style="margin-top:6px;">Educational Resource · <span lang="mr">शैक्षणिक उद्देशासाठी तयार केले</span> · National Tree of India 🇮🇳</p>
+</footer>
+
+</body>
+</html>
