@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Pine Tree — Pinus</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+
+:root{
+    --green-deep:#1a4a2e;
+    --green-mid:#2e7d32;
+    --green-light:#eaf7ea;
+    --green-accent:#4caf50;
+    --text-muted:#a5d6a7;
+    --stat-bg:#174030;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'DM Sans',sans-serif;
+    background:var(--green-light);
+    color:#1a1a1a;
+}
+
+/* NAVIGATION */
+
+nav{
+    background:var(--green-deep);
+    padding:12px;
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:10px;
+    position:sticky;
+    top:0;
+    z-index:100;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    padding:8px 16px;
+    border-radius:20px;
+    transition:0.3s;
+}
+
+nav a:hover{
+    background:var(--green-mid);
+}
+
+/* HEADER */
+
+header{
+    background:linear-gradient(160deg,#1a4a2e,#2e7d32);
+    color:white;
+    text-align:center;
+    padding:55px 20px;
+}
+
+header h1{
+    font-size:3rem;
+    font-family:'Playfair Display',serif;
+    margin-bottom:10px;
+}
+
+header p{
+    opacity:0.9;
+}
+
+/* MAIN */
+
+main{
+    max-width:1000px;
+    margin:auto;
+    padding:25px;
+}
+
+/* CARDS */
+
+.heritage-card{
+    background:linear-gradient(135deg,#2e7d32,#1a4a2e);
+    color:white;
+    padding:30px;
+    border-radius:20px;
+    margin-bottom:30px;
+}
+
+.heritage-tag{
+    background:rgba(255,255,255,0.15);
+    display:inline-block;
+    padding:6px 14px;
+    border-radius:25px;
+    margin-bottom:18px;
+    font-size:12px;
+}
+
+.heritage-card h2{
+    font-size:2.3rem;
+    margin-bottom:10px;
+    font-family:'Playfair Display',serif;
+}
+
+.scientific{
+    font-style:italic;
+    margin-bottom:8px;
+}
+
+.local-name{
+    margin-bottom:20px;
+}
+
+/* STATS */
+
+.stat-row{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:15px;
+}
+
+.stat-box{
+    background:var(--stat-bg);
+    border-radius:15px;
+    padding:18px;
+    text-align:center;
+}
+
+.stat-num{
+    font-size:2rem;
+    font-family:'Playfair Display',serif;
+    margin-bottom:5px;
+}
+
+.stat-label{
+    font-size:12px;
+    opacity:0.8;
+}
+
+/* CONTENT */
+
+section.content{
+    background:white;
+    padding:25px;
+    border-radius:15px;
+    margin-bottom:30px;
+    box-shadow:0 2px 10px rgba(0,0,0,0.08);
+}
+
+section.content h3{
+    color:var(--green-mid);
+    margin-bottom:18px;
+    border-bottom:2px solid var(--green-light);
+    padding-bottom:8px;
+    font-family:'Playfair Display',serif;
+}
+
+/* IMAGE */
+
+.tree-img{
+    width:100%;
+    max-width:500px;
+    display:block;
+    margin:0 auto 20px;
+    border-radius:15px;
+}
+
+/* LIST */
+
+.bilingual-list{
+    list-style:none;
+}
+
+.bilingual-list li{
+    padding:12px 0;
+    border-bottom:1px solid #eee;
+    line-height:1.8;
+}
+
+.lang-en{
+    display:block;
+    font-weight:500;
+}
+
+.lang-mr{
+    display:block;
+    color:#666;
+    margin-top:4px;
+}
+
+/* FACT GRID */
+
+.fact-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+    gap:15px;
+}
+
+.fact-tile{
+    background:var(--green-light);
+    padding:18px;
+    border-radius:14px;
+    border-left:4px solid var(--green-mid);
+}
+
+.fact-num{
+    font-size:1.8rem;
+    color:var(--green-mid);
+    margin-bottom:8px;
+}
+
+/* TABLE */
+
+.species-table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+.species-table th{
+    background:var(--green-light);
+    color:var(--green-mid);
+    padding:12px;
+    text-align:left;
+}
+
+.species-table td{
+    padding:12px;
+    border-bottom:1px solid #eee;
+}
+
+/* USES GRID */
+
+.uses-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+    gap:15px;
+}
+
+.use-card{
+    background:#f0f9f0;
+    border-left:4px solid var(--green-accent);
+    padding:18px;
+    border-radius:14px;
+    text-align:center;
+}
+
+.use-icon{
+    font-size:28px;
+    margin-bottom:10px;
+}
+
+/* FOOTER */
+
+footer{
+    background:var(--green-deep);
+    color:white;
+    text-align:center;
+    padding:25px;
+}
+
+/* MOBILE */
+
+@media(max-width:700px){
+
+    .stat-row{
+        grid-template-columns:1fr;
+    }
+
+    header h1{
+        font-size:2rem;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<nav>
+<a href="#overview">Overview</a>
+<a href="#species">Species</a>
+<a href="#leaves">Leaves</a>
+<a href="#medicine">Medicine</a>
+<a href="#history">History</a>
+<a href="#uses">Uses</a>
+<a href="#facts">Facts</a>
+</nav>
+
+<header>
+
+<h1>Pine Tree 🌲</h1>
+
+<p><em>Pinus</em> — Evergreen Conifer Tree</p>
+
+<p>पाइन वृक्ष — सदाहरित शंकूवृक्ष</p>
+
+</header>
+
+<main>
+
+<!-- OVERVIEW -->
+
+<div id="overview">
+
+<div class="heritage-card">
+
+<div class="heritage-tag">
+🌲 TREE HERITAGE TAG · PINE-2025 · वृक्ष वारसा
+</div>
+
+<h2>
+Pine Tree <br>
+<small style="font-size:1.1rem;">पाइन वृक्ष</small>
+</h2>
+
+<p class="scientific">Pinus</p>
+
+<p class="local-name">
+Family: Pinaceae <br>
+कुळ : Pinaceae
+</p>
+
+<div class="stat-row">
+
+<div class="stat-box">
+<div class="stat-num">1000+</div>
+<div class="stat-label">Years Lifespan <br> आयुष्य</div>
+</div>
+
+<div class="stat-box">
+<div class="stat-num">80m</div>
+<div class="stat-label">Maximum Height <br> कमाल उंची</div>
+</div>
+
+<div class="stat-box">
+<div class="stat-num">120+</div>
+<div class="stat-label">Species <br> प्रजाती</div>
+</div>
+
+</div>
+</div>
+
+<section class="content">
+
+<h3>Overview / परिचय</h3>
+
+<img class="tree-img" src="pine.jpg" alt="Pine Tree">
+
+<p style="line-height:1.8; margin-bottom:12px;">
+Pine trees are evergreen trees mainly found in cold mountainous regions.
+They are famous for their needle-like leaves and cone-shaped fruits.
+</p>
+
+<p style="line-height:1.8; color:#555;">
+पाइन वृक्ष हे मुख्यतः थंड पर्वतीय प्रदेशात आढळणारे सदाहरित वृक्ष आहेत.
+हे सुईसारख्या पानांसाठी आणि शंकूसारख्या फळांसाठी प्रसिद्ध आहेत.
+</p>
+
+</section>
+
+</div>
+
+<!-- SPECIES -->
+
+<div id="species">
+
+<section class="content">
+
+<h3>Types of Pine Trees / पाइन वृक्षांचे प्रकार</h3>
+
+<table class="species-table">
+
+<tr>
+<th>Scientific Name</th>
+<th>Common Name</th>
+<th>Where Found</th>
+</tr>
+
+<tr>
+<td><em>Pinus roxburghii</em></td>
+<td>Chir Pine / चीर पाइन</td>
+<td>India, Himalayas / भारत, हिमालय</td>
+</tr>
+
+<tr>
+<td><em>Pinus wallichiana</em></td>
+<td>Blue Pine / निळा पाइन</td>
+<td>Himalayan Region / हिमालयीन प्रदेश</td>
+</tr>
+
+<tr>
+<td><em>Pinus sylvestris</em></td>
+<td>Scots Pine / स्कॉट्स पाइन</td>
+<td>Europe & Asia / युरोप आणि आशिया</td>
+</tr>
+
+</table>
+
+</section>
+
+</div>
+
+<!-- LEAVES -->
+
+<div id="leaves">
+
+<section class="content">
+
+<h3>Leaves & Cones / पाने व शंकू</h3>
+
+<ul class="bilingual-list">
+
+<li>
+<span class="lang-en">
+Pine trees have long needle-shaped leaves.
+</span>
+
+<span class="lang-mr">
+पाइन वृक्षांची पाने लांब आणि सुईसारखी असतात.
+</span>
+</li>
+
+<li>
+<span class="lang-en">
+The leaves remain green throughout the year.
+</span>
+
+<span class="lang-mr">
+ही पाने वर्षभर हिरवी राहतात.
+</span>
+</li>
+
+<li>
+<span class="lang-en">
+Pine cones protect the seeds inside them.
+</span>
+
+<span class="lang-mr">
+पाइनचे शंकू बियांचे संरक्षण करतात.
+</span>
+</li>
+
+<li>
+<span class="lang-en">
+Male and female cones grow separately on the same tree.
+</span>
+
+<span class="lang-mr">
+नर आणि मादी शंकू एकाच झाडावर वेगवेगळे वाढतात.
+</span>
+</li>
+
+</ul>
+
+</section>
+
+</div>
+
+<!-- MEDICINE -->
+
+<div id="medicine">
+
+<section class="content">
+
+<h3>💊 Medicinal Benefits / औषधी फायदे</h3>
+
+<div class="fact-grid">
+
+<div class="fact-tile">
+<div class="fact-num">🌿</div>
+<div>Pine oil is used in herbal medicines.</div>
+<div>पाइन तेल हर्बल औषधांमध्ये वापरले जाते.</div>
+</div>
+
+<div class="fact-tile">
+<div class="fact-num">🫁</div>
+<div>Pine oil helps in breathing problems.</div>
+<div>पाइन तेल श्वसन समस्यांमध्ये उपयोगी असते.</div>
+</div>
+
+<div class="fact-tile">
+<div class="fact-num">💊</div>
+<div>Pine needles contain Vitamin C.</div>
+<div>पाइनच्या पानांमध्ये व्हिटॅमिन C असते.</div>
+</div>
+
+<div class="fact-tile">
+<div class="fact-num">🩹</div>
+<div>Pine resin heals wounds.</div>
+<div>पाइनची राळ जखमा भरून काढते.</div>
+</div>
+
+</div>
+
+</section>
+
+</div>
+
+<!-- HISTORY -->
+
+<div id="history">
+
+<section class="content">
+
+<h3>📜 Historical Importance / ऐतिहासिक महत्त्व</h3>
+
+<ul class="bilingual-list">
+
+<li>
+<span class="lang-en">
+Pine wood has been used for building houses and ships for centuries.
+</span>
+
+<span class="lang-mr">
+पाइन लाकूड शेकडो वर्षांपासून घरे आणि जहाजे बांधण्यासाठी वापरले जाते.
+</span>
+</li>
+
+<li>
+<span class="lang-en">
+Ancient people used pine resin for waterproofing boats.
+</span>
+
+<span class="lang-mr">
+प्राचीन लोक बोटी जलरोधक करण्यासाठी पाइनची राळ वापरत असत.
+</span>
+</li>
+
+<li>
+<span class="lang-en">
+Pine trees are used as Christmas trees in many countries.
+</span>
+
+<span class="lang-mr">
+अनेक देशांमध्ये पाइन वृक्ष ख्रिसमस ट्री म्हणून वापरले जातात.
+</span>
+</li>
+
+</ul>
+
+</section>
+
+</div>
+
+<!-- USES -->
+
+<div id="uses">
+
+<section class="content">
+
+<h3>Uses of Pine Tree / पाइन वृक्षाचे उपयोग</h3>
+
+<div class="uses-grid">
+
+<div class="use-card">
+<div class="use-icon">🪵</div>
+<div>Timber Wood</div>
+<div>लाकूड</div>
+</div>
+
+<div class="use-card">
+<div class="use-icon">🧴</div>
+<div>Resin & Turpentine</div>
+<div>राळ आणि टर्पेंटाइन</div>
+</div>
+
+<div class="use-card">
+<div class="use-icon">🏠</div>
+<div>Construction</div>
+<div>बांधकाम</div>
+</div>
+
+<div class="use-card">
+<div class="use-icon">📄</div>
+<div>Paper Industry</div>
+<div>कागद उद्योग</div>
+</div>
+
+<div class="use-card">
+<div class="use-icon">🌿</div>
+<div>Medicinal Uses</div>
+<div>औषधी उपयोग</div>
+</div>
+
+<div class="use-card">
+<div class="use-icon">🎄</div>
+<div>Christmas Tree</div>
+<div>ख्रिसमस ट्री</div>
+</div>
+
+</div>
+
+</section>
+
+</div>
+
+<!-- FACTS -->
+
+<div id="facts">
+
+<section class="content">
+
+<h3>Amazing Facts / अद्भुत तथ्ये</h3>
+
+<div class="fact-grid">
+
+<div class="fact-tile">
+<div class="fact-num">🌲</div>
+<div>Pine trees remain green throughout the year.</div>
+<div>पाइन वृक्ष वर्षभर हिरवे राहतात.</div>
+</div>
+
+<div class="fact-tile">
+<div class="fact-num">❄️</div>
+<div>They survive in snowy climates.</div>
+<div>हे बर्फाळ प्रदेशात टिकून राहतात.</div>
+</div>
+
+<div class="fact-tile">
+<div class="fact-num">🌍</div>
+<div>Pine forests absorb carbon dioxide.</div>
+<div>पाइनची जंगले कार्बन डायऑक्साइड शोषतात.</div>
+</div>
+
+<div class="fact-tile">
+<div class="fact-num">🫁</div>
+<div>Pine forests improve air quality.</div>
+<div>पाइनची जंगले हवा शुद्ध करतात.</div>
+</div>
+
+</div>
+
+</section>
+
+</div>
+
+</main>
+
+<footer>
+
+<p>
+<strong>Pine Tree — Pinus</strong>
+</p>
+
+<p style="margin-top:6px;">
+Educational Project · शैक्षणिक प्रकल्प
+</p>
+
+</footer>
+
+</body>
+</html>
