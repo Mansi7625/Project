@@ -1,0 +1,639 @@
+# Ashoka Tree — Saraca asoca (Full HTML Code)
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ashoka Tree — Saraca asoca</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --green-deep: #7b1f1f;
+            --green-mid: #c62828;
+            --green-card: #8e2424;
+            --green-light: #fff3e0;
+            --green-accent: #ff7043;
+            --text-light: #fff8f0;
+            --text-muted: #ffccbc;
+            --stat-bg: #6d1b1b;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--green-light);
+            color: #222;
+        }
+
+        nav {
+            background: var(--green-deep);
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 5px;
+            padding: 10px 20px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav a {
+            color: var(--text-muted);
+            text-decoration: none;
+            padding: 7px 15px;
+            border-radius: 20px;
+            font-size: 13px;
+            transition: 0.2s;
+        }
+
+        nav a:hover {
+            background: var(--green-mid);
+            color: white;
+        }
+
+        header {
+            background: linear-gradient(160deg, #7b1f1f 0%, #c62828 100%);
+            color: white;
+            text-align: center;
+            padding: 55px 20px;
+        }
+
+        header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.7rem;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            opacity: 0.9;
+            margin-top: 6px;
+        }
+
+        main {
+            max-width: 950px;
+            margin: auto;
+            padding: 25px 15px 40px;
+        }
+
+        .heritage-card {
+            background: linear-gradient(135deg, var(--green-mid), var(--green-deep));
+            color: white;
+            padding: 30px;
+            border-radius: 20px;
+            margin-bottom: 30px;
+        }
+
+        .heritage-tag {
+            display: inline-block;
+            background: rgba(255,255,255,0.15);
+            padding: 7px 15px;
+            border-radius: 25px;
+            font-size: 12px;
+            margin-bottom: 18px;
+        }
+
+        .heritage-card h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+        }
+
+        .scientific {
+            font-style: italic;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+
+        .local-name {
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 20px;
+        }
+
+        .stat-row {
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            gap: 12px;
+        }
+
+        .stat-box {
+            background: var(--stat-bg);
+            border-radius: 15px;
+            padding: 18px;
+            text-align: center;
+        }
+
+        .stat-num {
+            font-size: 1.9rem;
+            font-family: 'Playfair Display', serif;
+            color: var(--text-muted);
+            margin-bottom: 6px;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            line-height: 1.5;
+        }
+
+        section.content {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 28px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+
+        section.content h3 {
+            color: var(--green-mid);
+            font-family: 'Playfair Display', serif;
+            margin-bottom: 18px;
+            border-bottom: 2px solid #ffe0b2;
+            padding-bottom: 10px;
+        }
+
+        img.tree-img {
+            width: 100%;
+            max-width: 500px;
+            display: block;
+            margin: auto;
+            border-radius: 14px;
+            margin-bottom: 20px;
+        }
+
+        .bilingual-list {
+            list-style: none;
+        }
+
+        .bilingual-list li {
+            padding: 12px 0;
+            border-bottom: 1px solid #eee;
+            line-height: 1.7;
+        }
+
+        .lang-en {
+            display: block;
+            font-weight: 500;
+        }
+
+        .lang-mr {
+            display: block;
+            color: #777;
+            margin-top: 3px;
+            font-size: 0.95em;
+        }
+
+        .fact-grid,
+        .uses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
+            gap: 15px;
+        }
+
+        .fact-tile,
+        .use-card {
+            background: #fff5f0;
+            padding: 18px;
+            border-radius: 14px;
+            border-left: 4px solid var(--green-mid);
+        }
+
+        .fact-num {
+            font-size: 1.7rem;
+            color: var(--green-mid);
+            margin-bottom: 8px;
+            font-family: 'Playfair Display', serif;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th {
+            background: #ffe0b2;
+            color: var(--green-mid);
+            padding: 12px;
+            text-align: left;
+        }
+
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #eee;
+        }
+
+        footer {
+            background: var(--green-deep);
+            color: white;
+            text-align: center;
+            padding: 25px;
+        }
+
+        @media(max-width:600px){
+            .stat-row {
+                grid-template-columns: 1fr;
+            }
+
+            header h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <a href="#overview">Overview</a>
+    <a href="#species">Species</a>
+    <a href="#location">Location</a>
+    <a href="#uses">Uses</a>
+    <a href="#medical">Medicinal</a>
+    <a href="#history">History</a>
+    <a href="#leaves">Leaves</a>
+    <a href="#facts">Facts</a>
+</nav>
+
+<header>
+    <h1>Ashoka Tree 🌺</h1>
+    <p><em>Saraca asoca</em> — Sacred Tree of India</p>
+    <p lang="mr">अशोक वृक्ष — भारतातील पवित्र वृक्ष</p>
+</header>
+
+<main>
+
+<div id="overview">
+    <div class="heritage-card">
+        <div class="heritage-tag">🌺 HERITAGE TREE · ASHOKA-2025 · वृक्ष वारसा</div>
+
+        <h2>Ashoka Tree<br>
+        <small style="font-size:1rem;opacity:0.8;">अशोक वृक्ष</small></h2>
+
+        <p class="scientific">Saraca asoca</p>
+
+        <p class="local-name">
+            Family: Fabaceae<br>
+            <span lang="mr">कुळ: Fabaceae</span>
+        </p>
+
+        <div class="stat-row">
+            <div class="stat-box">
+                <div class="stat-num">10m</div>
+                <div class="stat-label">Average Height<br><span lang="mr">सरासरी उंची</span></div>
+            </div>
+
+            <div class="stat-box">
+                <div class="stat-num">100+</div>
+                <div class="stat-label">Years Lifespan<br><span lang="mr">आयुष्य</span></div>
+            </div>
+
+            <div class="stat-box">
+                <div class="stat-num">Spring</div>
+                <div class="stat-label">Flowering Season<br><span lang="mr">फुलण्याचा हंगाम</span></div>
+            </div>
+        </div>
+    </div>
+
+    <section class="content">
+        <h3>Overview / परिचय</h3>
+
+        <img class="tree-img"
+        src="ashoka.jpg"
+        alt="Ashoka Tree">
+
+        <p style="line-height:1.8; margin-bottom:12px;">
+            The Ashoka Tree is one of the most sacred and beautiful trees in India. It is famous for its fragrant orange-red flowers and evergreen leaves.
+        </p>
+
+        <p lang="mr" style="line-height:1.8; color:#666;">
+            अशोक वृक्ष हा भारतातील सर्वात पवित्र आणि सुंदर वृक्षांपैकी एक आहे. त्याची केशरी-लाल सुगंधी फुले आणि सदाहरित पाने प्रसिद्ध आहेत.
+        </p>
+    </section>
+</div>
+
+<div id="species">
+    <section class="content">
+        <h3>Species Information / प्रजाती माहिती</h3>
+
+        <table>
+            <tr>
+                <th>Scientific Name</th>
+                <th>Common Name</th>
+                <th>Marathi Name</th>
+                <th>Where Found</th>
+            </tr>
+
+            <tr>
+                <td><em>Saraca asoca</em></td>
+                <td>Ashoka Tree</td>
+                <td>अशोक वृक्ष</td>
+                <td>India, Sri Lanka</td>
+            </tr>
+
+            <tr>
+                <td><em>Saraca indica</em></td>
+                <td>Indian Ashoka</td>
+                <td>भारतीय अशोक</td>
+                <td>South Asia</td>
+            </tr>
+        </table>
+    </section>
+</div>
+
+<div id="location">
+    <section class="content">
+        <h3>Where It Grows / कुठे आढळतो</h3>
+
+        <ul class="bilingual-list">
+            <li>
+                <span class="lang-en">Found in tropical forests of India</span>
+                <span class="lang-mr">भारताच्या उष्णकटिबंधीय जंगलांमध्ये आढळतो</span>
+            </li>
+
+            <li>
+                <span class="lang-en">Common in Maharashtra, Kerala and Karnataka</span>
+                <span class="lang-mr">महाराष्ट्र, केरळ आणि कर्नाटक येथे सामान्य</span>
+            </li>
+
+            <li>
+                <span class="lang-en">Grows best in warm and humid climate</span>
+                <span class="lang-mr">उबदार आणि दमट हवामानात चांगली वाढ होते</span>
+            </li>
+        </ul>
+    </section>
+</div>
+
+<div id="uses">
+    <section class="content">
+        <h3>Uses of Ashoka Tree / अशोक वृक्षाचे उपयोग</h3>
+
+        <div class="uses-grid">
+
+            <div class="use-card">
+                <h4>🌿 Ayurvedic Medicine</h4>
+                <p>Used in traditional medicine</p>
+                <p lang="mr">आयुर्वेदिक औषधांमध्ये वापर</p>
+            </div>
+
+            <div class="use-card">
+                <h4>🌺 Ornamental Plant</h4>
+                <p>Used for decoration in gardens</p>
+                <p lang="mr">बाग सजावटीसाठी वापर</p>
+            </div>
+
+            <div class="use-card">
+                <h4>🌳 Shade Tree</h4>
+                <p>Provides cool shade</p>
+                <p lang="mr">थंड सावली देते</p>
+            </div>
+
+            <div class="use-card">
+                <h4>🐦 Wildlife Support</h4>
+                <p>Birds and insects depend on it</p>
+                <p lang="mr">पक्षी व कीटकांना आधार</p>
+            </div>
+
+        </div>
+    </section>
+</div>
+
+<div id="medical">
+    <section class="content">
+        <h3>💊 Medicinal Benefits / औषधी फायदे</h3>
+
+        <ul class="bilingual-list">
+            <li>
+                <span class="lang-en">Ashoka bark is used in Ayurvedic medicine for women's health.</span>
+                <span class="lang-mr">अशोकाची साल महिलांच्या आरोग्यासाठी आयुर्वेदात वापरली जाते.</span>
+            </li>
+
+            <li>
+                <span class="lang-en">Flowers help in treating skin disorders.</span>
+                <span class="lang-mr">फुले त्वचारोगांवर उपयोगी मानली जातात.</span>
+            </li>
+
+            <li>
+                <span class="lang-en">Leaves and seeds are used in herbal remedies.</span>
+                <span class="lang-mr">पाने आणि बिया हर्बल औषधांमध्ये वापरल्या जातात.</span>
+            </li>
+        </ul>
+    </section>
+</div>
+
+<div id="history">
+    <section class="content">
+        <h3>🏛️ Historical Importance / ऐतिहासिक महत्त्व</h3>
+
+        <ul class="bilingual-list">
+            <li>
+                <span class="lang-en">Ashoka Tree is mentioned in Ramayana and Buddhist literature.</span>
+                <span class="lang-mr">अशोक वृक्षाचा उल्लेख रामायण आणि बौद्ध साहित्यात आहे.</span>
+            </li>
+
+            <li>
+                <span class="lang-en">Sita stayed in Ashoka Vatika during her captivity in Lanka.</span>
+                <span class="lang-mr">सीता लंकेत अशोकवाटिकेत राहिली होती.</span>
+            </li>
+
+            <li>
+                <span class="lang-en">The tree symbolises love, peace and prosperity.</span>
+                <span class="lang-mr">हा वृक्ष प्रेम, शांतता आणि समृद्धीचे प्रतीक आहे.</span>
+            </li>
+        </ul>
+    </section>
+</div>
+
+<div id="leaves">
+    <section class="content">
+        <h3>🍃 Leaves & Cones / पाने व शंकू</h3>
+
+        <div class="fact-grid">
+
+            <div class="fact-tile">
+                <div class="fact-num">Evergreen</div>
+                <p>Leaves remain green throughout the year.</p>
+                <p lang="mr">पाने वर्षभर हिरवी राहतात.</p>
+            </div>
+
+            <div class="fact-tile">
+                <div class="fact-num">Orange Flowers</div>
+                <p>Young flowers appear yellow-orange and later turn red.</p>
+                <p lang="mr">फुले सुरुवातीला पिवळी-केशरी आणि नंतर लाल होतात.</p>
+            </div>
+
+            <div class="fact-tile">
+                <div class="fact-num">Soft Leaves</div>
+                <p>Young leaves are soft and copper coloured.</p>
+                <p lang="mr">कोवळी पाने मऊ आणि तांबूस रंगाची असतात.</p>
+            </div>
+
+        </div>
+    </section>
+</div>
+
+<div id="facts">
+    <section class="content">
+        <h3>Amazing Facts / अद्भुत तथ्ये</h3>
+
+        <div class="fact-grid">
+
+            <div class="fact-tile">
+                <div class="fact-num">Sacred</div>
+                <p>The Ashoka Tree is considered sacred in Hinduism and Buddhism.</p>
+                <p lang="mr">अशोक वृक्ष हिंदू आणि बौद्ध धर्मात पवित्र मानला जातो.</p>
+            </div>
+
+            <div class="fact-tile">
+                <div class="fact-num">Rare</div>
+                <p>It is becoming rare in natural forests.</p>
+                <p lang="mr">नैसर्गिक जंगलांमध्ये हा वृक्ष दुर्मिळ होत आहे.</p>
+            </div>
+
+            <div class="fact-tile">
+                <div class="fact-num">Fragrant</div>
+                <p>Its flowers have a sweet fragrance.</p>
+                <p lang="mr">त्याच्या फुलांना सुगंध असतो.</p>
+            </div>
+
+            <div class="fact-tile">
+                <div class="fact-num">Medicinal</div>
+                <p>Every part of the tree has medicinal value.</p>
+                <p lang="mr">वृक्षाचा प्रत्येक भाग औषधी आहे.</p>
+            </div>
+
+        </div>
+    </section>
+</div>
+
+
+<div id="leaf-structure">
+    <section class="content">
+        <h3>🍃 Leaf Structure / पानांची रचना</h3>
+
+        <ul class="bilingual-list">
+            <li>
+                <span class="lang-en">Ashoka leaves are long, smooth and shiny.</span>
+                <span class="lang-mr">अशोकाची पाने लांब, गुळगुळीत आणि चमकदार असतात.</span>
+            </li>
+
+            <li>
+                <span class="lang-en">Young leaves appear copper-red before turning green.</span>
+                <span class="lang-mr">कोवळी पाने सुरुवातीला तांबूस-लाल दिसतात आणि नंतर हिरवी होतात.</span>
+            </li>
+
+            <li>
+                <span class="lang-en">Leaves grow in clusters and provide dense shade.</span>
+                <span class="lang-mr">पाने समूहात वाढतात आणि दाट सावली देतात.</span>
+            </li>
+        </ul>
+    </section>
+</div>
+
+<div id="environment">
+    <section class="content">
+        <h3>🌍 Environmental Benefits / पर्यावरणीय फायदे</h3>
+
+        <div class="fact-grid">
+
+            <div class="fact-tile">
+                <div class="fact-num">O₂</div>
+                <p>Produces fresh oxygen and improves air quality.</p>
+                <p lang="mr">ताजा ऑक्सिजन निर्माण करून हवेची गुणवत्ता सुधारतो.</p>
+            </div>
+
+            <div class="fact-tile">
+                <div class="fact-num">CO₂ ↓</div>
+                <p>Absorbs carbon dioxide from the atmosphere.</p>
+                <p lang="mr">वातावरणातील कार्बन डायऑक्साइड शोषून घेतो.</p>
+            </div>
+
+            <div class="fact-tile">
+                <div class="fact-num">🌱</div>
+                <p>Helps prevent soil erosion during heavy rains.</p>
+                <p lang="mr">मुसळधार पावसात मातीची धूप रोखण्यास मदत करतो.</p>
+            </div>
+
+            <div class="fact-tile">
+                <div class="fact-num">🌤️</div>
+                <p>Provides cooling effect and reduces heat.</p>
+                <p lang="mr">थंडावा निर्माण करून उष्णता कमी करतो.</p>
+            </div>
+
+        </div>
+    </section>
+</div>
+
+<div id="wildlife">
+    <section class="content">
+        <h3>🐦 Wildlife Connection / वन्यजीव संबंध</h3>
+
+        <ul class="bilingual-list">
+            <li>
+                <span class="lang-en">Birds build nests on Ashoka trees for shelter.</span>
+                <span class="lang-mr">पक्षी आश्रयासाठी अशोक वृक्षावर घरटी बांधतात.</span>
+            </li>
+
+            <li>
+                <span class="lang-en">Butterflies and bees are attracted to its fragrant flowers.</span>
+                <span class="lang-mr">फुलपाखरे आणि मधमाशा त्याच्या सुगंधी फुलांकडे आकर्षित होतात.</span>
+            </li>
+
+            <li>
+                <span class="lang-en">The tree supports biodiversity in forests and gardens.</span>
+                <span class="lang-mr">हा वृक्ष जंगल आणि बागांमधील जैवविविधतेला आधार देतो.</span>
+            </li>
+
+            <li>
+                <span class="lang-en">Many insects depend on the tree for food and habitat.</span>
+                <span class="lang-mr">अनेक कीटक अन्न आणि निवाऱ्यासाठी या वृक्षावर अवलंबून असतात.</span>
+            </li>
+        </ul>
+    </section>
+</div>
+
+<div id="mythology">
+    <section class="content">
+        <h3>📖 Mythology & Stories / पुराणकथा व गोष्टी</h3>
+
+        <ul class="bilingual-list">
+            <li>
+                <span class="lang-en">Ashoka Vatika in Ramayana was the garden where Sita stayed in Lanka.</span>
+                <span class="lang-mr">रामायणातील अशोकवाटिका हे ते उद्यान होते जिथे सीता लंकेत राहिली होती.</span>
+            </li>
+
+            <li>
+                <span class="lang-en">The Ashoka Tree is associated with love, happiness and prosperity.</span>
+                <span class="lang-mr">अशोक वृक्ष प्रेम, आनंद आणि समृद्धीशी संबंधित मानला जातो.</span>
+            </li>
+
+            <li>
+                <span class="lang-en">Buddhist traditions consider the tree sacred and spiritually important.</span>
+                <span class="lang-mr">बौद्ध परंपरेत हा वृक्ष पवित्र आणि आध्यात्मिकदृष्ट्या महत्त्वाचा मानला जातो.</span>
+            </li>
+
+            <li>
+                <span class="lang-en">Ancient Indian literature praises the beauty of Ashoka flowers.</span>
+                <span class="lang-mr">प्राचीन भारतीय साहित्यात अशोकाच्या फुलांच्या सौंदर्याचे वर्णन केले आहे.</span>
+            </li>
+        </ul>
+    </section>
+</div>
+
+</main>
+
+<footer>
+    <p><strong>Ashoka Tree — Saraca asoca</strong></p>
+    <p style="margin-top:6px;">
+        Educational Project · शैक्षणिक प्रकल्प · Sacred Indian Tree 🇮🇳
+    </p>
+</footer>
+
+</body>
+</html>
+```
